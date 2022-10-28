@@ -1,6 +1,6 @@
 import pytest
 
-from myapp.calculator import add
+from src.myapp import calculator
 
 
 # Perform multiple calls with different parameters.
@@ -12,4 +12,4 @@ from myapp.calculator import add
                          [(1, 2, 3), ("a", "b", "ab"), ([1, 2], [3], [1, 2, 3])],
                          ids=["int", "str", "list"])
 def test_add_num(a, b, result):
-    assert add(a, b) == result
+    assert calculator.add(a, b) == result

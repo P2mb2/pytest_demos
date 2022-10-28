@@ -1,6 +1,6 @@
 import pytest
 
-from myapp.developer import Developer
+from src.myapp.developer import Developer
 
 
 @pytest.fixture

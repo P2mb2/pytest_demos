@@ -1,7 +1,7 @@
 from unittest import mock
 
-from myapp.numbers import guess_number
-from myapp.requests import get_my_ip
+from src.myapp import numbers
+from src.myapp import requests
 
 
 # Mocking is the art of hardcode something that we can´t control on testing, so that we guarantee our test have always
@@ -17,21 +17,21 @@ from myapp.requests import get_my_ip
 # This way... we replaced the call to get_number function and forced the return to 3... congratulations...
 # you are a millionare now.
 
-@mock.patch("myapp.numbers.get_number")
+@mock.patch("src.myapp.numbers.get_number")
 def test_guess_number(mock_get_number):
     mock_get_number.return_value = 3
-    assert guess_number(3) == "You Won 1 Million Euros !!!!"
+    assert numbers.guess_number(3) == "You Won 1 Million Euros !!!!"
 
 
 # Mock Example for requests.get
 # This mock function will return a mock object. To use functions as result (json.return_value) we need to use dictionary
 # unpacking
 
-@mock.patch("myapp.requests.requests.get")
+@mock.patch("src.myapp.requests.requests.get")
 def test_get_my_ip(mock_get_request):
     mock_get_request.return_value = mock.Mock(name="mock response", **{"status_code": 200, "json.return_value": {
         "origin": "111.111.111.111"}})
-    assert get_my_ip() == "111.111.111.111"
+    assert requests.get_my_ip() == "111.111.111.111"
 
 # There are another pretty usefull parameter in the mock object aside from return_value. That is side_effects
 # side_effect allows you to define a function that is called whenever the Mock is called.
